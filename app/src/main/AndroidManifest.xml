@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LuggerWelcome"></activity>
-        <activity android:name=".LuggerLanding" />
+        <activity android:name=".LuggerMainActivity" />
         <activity android:name=".PatronLanding" />
         <activity android:name=".MainActivity">
             <intent-filter>

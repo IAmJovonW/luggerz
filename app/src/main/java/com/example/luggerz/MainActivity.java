@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private void goToLuggerLanding() {
         Log.d(TAG, "Navigating To Lugger Landing Activity");
 
-        Intent i = new Intent(this, LuggerLanding.class);
+        Intent i = new Intent(this, LuggerMainActivity.class);
         startActivity(i);
         finish();
     }

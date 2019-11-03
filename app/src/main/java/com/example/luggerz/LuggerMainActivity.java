@@ -1,6 +1,5 @@
 package com.example.luggerz;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,11 +23,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import dmax.dialog.SpotsDialog;
 
-public class LuggerLanding extends AppCompatActivity {
+
+public class LuggerMainActivity extends AppCompatActivity {
 
     Button btnLuggerRegister, btnLuggerSignIn;
     RelativeLayout rootLayout;
+    public AlertDialog waitingDialog; // let this be public
 
     FirebaseAuth auth;
     FirebaseDatabase db;
@@ -85,6 +87,12 @@ public class LuggerLanding extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
 
+
+                //Set disable button Sign In if processing
+                btnLuggerSignIn.setEnabled(false);
+
+
+
                 //Check validation
                 if (TextUtils.isEmpty(etLuggerEmail.getText().toString())) {
                     Snackbar.make(rootLayout, "Please enter email address", Snackbar.LENGTH_SHORT).show();
@@ -98,19 +106,29 @@ public class LuggerLanding extends AppCompatActivity {
                     Snackbar.make(rootLayout, "Password is too short!!!", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
+
+                final android.app.AlertDialog waitingDialog = new SpotsDialog.Builder().setContext(LuggerMainActivity.this).build();
+                waitingDialog.show();
+
+
                 //Login
                 auth.signInWithEmailAndPassword(etLuggerEmail.getText().toString(), etLuggerPassword.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
                             public void onSuccess(AuthResult authResult) {
-                                startActivity(new Intent(LuggerLanding.this, LuggerWelcome.class));
+                                waitingDialog.dismiss();
+                                startActivity(new Intent(LuggerMainActivity.this, LuggerWelcome.class));
                                 finish();
 
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        waitingDialog.dismiss();
                         Snackbar.make(rootLayout, "Failed" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
+
+                        //Active button
+                        btnLuggerSignIn.setEnabled(true);
                     }
                 });
 
