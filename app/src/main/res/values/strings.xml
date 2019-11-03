@@ -8,4 +8,5 @@
     <string name="patron_register">REGISTER</string>
     <string name="patron_subtitle">Patron</string>
     <string name="lugger_subtitle">Lugger</string>
+    <string name="title_activity_luggers_welcome">Map</string>
 </resources>

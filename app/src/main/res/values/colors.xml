@@ -7,4 +7,8 @@
     <color name="LuggerPrimaryBlue">#1976D2</color>
     <color name="LuggerSecondaryBlue">#8EBFE7</color>
     <color name="white">#FFFFFF</color>
+    <color name="baseReleaseColor">#212121</color>
+    <color name="basePressColor">#FAFAFA</color>
+    <color name="ballReleaseColor">#9E9E9E</color>
+
 </resources>
