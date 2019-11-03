@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1092005100870",
+    "firebase_url": "https://luggerz.firebaseio.com",
+    "project_id": "luggerz",
+    "storage_bucket": "luggerz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092005100870:android:fee467ed6c948ae9923947",
+        "android_client_info": {
+          "package_name": "com.example.luggerz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092005100870-7emibaj9gp2b79e4ubt9ch0e5o8t420c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.luggerz",
+            "certificate_hash": "ca58aa56a2c1030634f4f890d326475341794aeb"
+          }
+        },
+        {
+          "client_id": "1092005100870-o70rj4p51r57nrn8rj3fslid9bb1eag0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJc6qGQXAzYBZ6_jnNZ8rltM7X8cdZIhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092005100870-o70rj4p51r57nrn8rj3fslid9bb1eag0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

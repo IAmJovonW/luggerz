@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardElevation="10dp">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerEmail"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerPassword"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerName"
+            android:hint="Name"
+            android:inputType="text"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerPhone"
+            android:hint="Phone"
+            android:inputType="phone"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerVehicleMake"
+            android:hint="Vehicle Make"
+            android:inputType="text"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerVehicleModel"
+            android:hint="Vehicle Model"
+            android:inputType="text"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerVehicleColor"
+            android:hint="Vehicle Color"
+            android:inputType="text"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/etLuggerLicensePlateNumber"
+            android:hint="License Plate #"
+            android:inputType="text"
+            android:text=""
+            android:textColor="#1976D2"
+            android:textColorHint="#1976D2"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:met_singleLineEllipsis="true"
+            app:met_baseColor="#1976D2"
+            app:met_floatingLabel="highlight"
+            app:met_primaryColor="#1976D2"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>
+</androidx.cardview.widget.CardView>

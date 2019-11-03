@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Luggerz</string>
+    <string name="tvTitle">Luggerz</string>
+    <string name="todo">TODO</string>
+    <string name="luggerBtn">Lugger</string>
+    <string name="patronBtn">PATRON</string>
+    <string name="patron_sign_in">SIGN IN</string>
+    <string name="patron_register">REGISTER</string>
+    <string name="patron_subtitle">Patron</string>
+    <string name="lugger_subtitle">Lugger</string>
+</resources>
