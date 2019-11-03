@@ -27,13 +27,12 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class LuggerLanding extends AppCompatActivity {
 
-    Button btnLuggerRegister,btnLuggerSignIn;
+    Button btnLuggerRegister, btnLuggerSignIn;
     RelativeLayout rootLayout;
 
     FirebaseAuth auth;
     FirebaseDatabase db;
     DatabaseReference Luggers;
-
 
 
     @Override
@@ -47,9 +46,9 @@ public class LuggerLanding extends AppCompatActivity {
         Luggers = db.getReference("Lugger");
 
         //Init View
-        btnLuggerRegister = (Button)findViewById(R.id.btnLuggerRegister);
-        btnLuggerSignIn = (Button)findViewById(R.id.btnLuggerSignIn);
-        rootLayout = (RelativeLayout)findViewById(R.id.rootLayout);
+        btnLuggerRegister = (Button) findViewById(R.id.btnLuggerRegister);
+        btnLuggerSignIn = (Button) findViewById(R.id.btnLuggerSignIn);
+        rootLayout = (RelativeLayout) findViewById(R.id.rootLayout);
 
         //Event
         btnLuggerRegister.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +67,7 @@ public class LuggerLanding extends AppCompatActivity {
     }
 
     private void showLoginDialog() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.MyDialogTheme);
         dialog.setTitle("SIGN IN");
         dialog.setMessage("Please use email to sign in");
 
@@ -82,42 +81,41 @@ public class LuggerLanding extends AppCompatActivity {
 
         //Set button
         dialog.setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
 
-                        //Check validation
-                        if (TextUtils.isEmpty(etLuggerEmail.getText().toString())) {
-                            Snackbar.make(rootLayout, "Please enter email address", Snackbar.LENGTH_SHORT).show();
-                            return;
-                        }
-                        if (TextUtils.isEmpty(etLuggerPassword.getText().toString())) {
-                            Snackbar.make(rootLayout, "Please enter password", Snackbar.LENGTH_SHORT).show();
-                            return;
-                        }
-                        if (etLuggerPassword.getText().toString().length() < 6) {
-                            Snackbar.make(rootLayout, "Password is too short!!!", Snackbar.LENGTH_SHORT).show();
-                            return;
-                        }
-                        //Login
-                        auth.signInWithEmailAndPassword(etLuggerEmail.getText().toString(), etLuggerPassword.getText().toString())
-                                .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                    @Override
-                                    public void onSuccess(AuthResult authResult) {
-                                        startActivity(new Intent(LuggerLanding.this,LuggerWelcome.class));
-                                        finish();
-
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
+                //Check validation
+                if (TextUtils.isEmpty(etLuggerEmail.getText().toString())) {
+                    Snackbar.make(rootLayout, "Please enter email address", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(etLuggerPassword.getText().toString())) {
+                    Snackbar.make(rootLayout, "Please enter password", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+                if (etLuggerPassword.getText().toString().length() < 6) {
+                    Snackbar.make(rootLayout, "Password is too short!!!", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+                //Login
+                auth.signInWithEmailAndPassword(etLuggerEmail.getText().toString(), etLuggerPassword.getText().toString())
+                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                             @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Snackbar.make(rootLayout, "Failed"+e.getMessage(), Snackbar.LENGTH_SHORT).show();
-                            }
-                        });
+                            public void onSuccess(AuthResult authResult) {
+                                startActivity(new Intent(LuggerLanding.this, LuggerWelcome.class));
+                                finish();
 
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Snackbar.make(rootLayout, "Failed" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
                     }
                 });
 
+            }
+        });
 
 
         dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -128,12 +126,11 @@ public class LuggerLanding extends AppCompatActivity {
         });
 
 
-
         dialog.show();
     }
 
     private void showRegisterDialog() {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("REGISTER");
         dialog.setMessage("Please use email to register");
 
@@ -145,54 +142,40 @@ public class LuggerLanding extends AppCompatActivity {
         final MaterialEditText etLuggerName = lugger_register_layout.findViewById(R.id.etLuggerName);
         final MaterialEditText etLuggerPhone = lugger_register_layout.findViewById(R.id.etLuggerPhone);
 
-        final MaterialEditText etLuggerVehicleMake = lugger_register_layout.findViewById(R.id.etLuggerVehicleMake);
-        final MaterialEditText etLuggerVehicleModel = lugger_register_layout.findViewById(R.id.etLuggerVehicleModel);
-        final MaterialEditText etLuggerVehicleColor = lugger_register_layout.findViewById(R.id.etLuggerVehicleColor);
-        final MaterialEditText etLuggerLicensePlateNumber = lugger_register_layout.findViewById(R.id.etLuggerLicensePlateNumber);
-
         dialog.setView(lugger_register_layout);
 
         //Set button
         dialog.setPositiveButton("REGISTER", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
                 dialogInterface.dismiss();
 
-                //Check validation
-                if(TextUtils.isEmpty(etLuggerEmail.getText().toString())){
+                //Check Validation
+                if(TextUtils.isEmpty(etLuggerEmail.getText().toString()))
+                {
                     Snackbar.make(rootLayout, "Please enter email address", Snackbar.LENGTH_SHORT).show();
-                return;
+                    return;
                 }
-                if(TextUtils.isEmpty(etLuggerPhone.getText().toString())){
+                if(TextUtils.isEmpty(etLuggerPhone.getText().toString()))
+                {
                     Snackbar.make(rootLayout, "Please enter phone number", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if(TextUtils.isEmpty(etLuggerPassword.getText().toString())){
+                if(TextUtils.isEmpty(etLuggerPassword.getText().toString()))
+                {
                     Snackbar.make(rootLayout, "Please enter password", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if(etLuggerPassword.getText().toString().length()<6){
-                    Snackbar.make(rootLayout, "Password is too short!!!", Snackbar.LENGTH_SHORT).show();
+                if(TextUtils.isEmpty(etLuggerName.getText().toString()))
+                {
+                    Snackbar.make(rootLayout, "Please enter name", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                if(TextUtils.isEmpty(etLuggerName.getText().toString())){
-                    Snackbar.make(rootLayout, "Please enter your name", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(etLuggerVehicleMake.getText().toString())){
-                    Snackbar.make(rootLayout, "Please enter vehicle make", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(etLuggerVehicleModel.getText().toString())){
-                    Snackbar.make(rootLayout, "Please enter vehicle model", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(etLuggerVehicleColor.getText().toString())){
-                    Snackbar.make(rootLayout, "Please enter vehicle color", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(etLuggerLicensePlateNumber.getText().toString())){
-                    Snackbar.make(rootLayout, "Please enter license plate", Snackbar.LENGTH_SHORT).show();
+
+                if(etLuggerPassword.getText().toString().length() <6 )
+                {
+                    Snackbar.make(rootLayout, "Password too short", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -202,44 +185,39 @@ public class LuggerLanding extends AppCompatActivity {
                     public void onSuccess(AuthResult authResult) {
                         //Save lugger to db
                         Lugger lugger = new Lugger();
+
                         lugger.setEmail(etLuggerEmail.getText().toString());
                         lugger.setPassword(etLuggerPassword.getText().toString());
                         lugger.setName(etLuggerName.getText().toString());
                         lugger.setPhone(etLuggerPhone.getText().toString());
-                        lugger.setVehicle_make(etLuggerVehicleMake.getText().toString());
-                        lugger.setVehicle_model(etLuggerVehicleModel.getText().toString());
-                        lugger.setVehicle_color(etLuggerVehicleColor.getText().toString());
-                        lugger.setLicense_plate(etLuggerLicensePlateNumber.getText().toString());
 
-                        //Luggers db object reference
-                        //Use email to key
-                        Luggers.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(lugger)
-                                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                        Snackbar.make(rootLayout,"Register successful", Snackbar.LENGTH_SHORT).show();
-                                    }
-                                })
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Snackbar.make(rootLayout,"Register failed!!!"+e.getMessage(), Snackbar.LENGTH_SHORT).show();
-                                    }
-                                });
+
+                        //db reference
+                        Luggers.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(lugger).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Snackbar.make(rootLayout, "You are now registered!", Snackbar.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Snackbar.make(rootLayout, "Failed"+e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
+
+
 
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
+                }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(rootLayout,"Register failed!!!"+e.getMessage(), Snackbar.LENGTH_SHORT).show();
-
+                        Snackbar.make(rootLayout, "Failed"+e.getMessage(), Snackbar.LENGTH_SHORT).show();
                     }
                 });
+
+
+
             }
-
-
         });
 
         dialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
