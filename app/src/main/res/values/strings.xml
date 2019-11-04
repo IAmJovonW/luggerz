@@ -9,4 +9,6 @@
     <string name="patron_subtitle">Patron</string>
     <string name="lugger_subtitle">Lugger</string>
     <string name="title_activity_luggers_welcome">Map</string>
+    <string name="google_direction_api">AIzaSyCqwz72TEG4-7A4M90vwQ6V545qY23HYQ8</string>
+
 </resources>
