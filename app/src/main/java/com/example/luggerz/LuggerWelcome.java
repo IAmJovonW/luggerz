@@ -105,6 +105,7 @@ public class LuggerWelcome extends FragmentActivity implements OnMapReadyCallbac
     private PolylineOptions polylineOptions, blackPolylineOptions;
     private Polyline blackPolyline, greyPolyline;
 
+
     private IGoogleAPI mService;
     Runnable drawPathRunnable = new Runnable() {
         @Override
@@ -218,7 +219,7 @@ public class LuggerWelcome extends FragmentActivity implements OnMapReadyCallbac
 
         String requestApi = null;
         try {
-            requestApi = "http://maps.googleapis.com/maps/api/directions/json?"+
+            requestApi = "https://maps.googleapis.com/maps/api/directions/json?"+
                     "mode=driving&"+
                     "transit_routing_preferences=less_driving&"+
                     "origin="+currentPosition.latitude+","+currentPosition.longitude+"&"+
@@ -451,7 +452,7 @@ public class LuggerWelcome extends FragmentActivity implements OnMapReadyCallbac
                         //Add Marker
                         if(mCurrent != null)
                             mCurrent.remove();
-                        mCurrent = mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromResource(R.drawable.car)).position(new LatLng(latitude, longitude)).title("You"));
+                        mCurrent = mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("Your Location"));
 
                         //Move camera to this position
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 15.0f));
