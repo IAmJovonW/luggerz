@@ -29,8 +29,9 @@ import com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -47,6 +48,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.SquareCap;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
@@ -58,6 +64,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -99,11 +106,14 @@ public class LuggerWelcome extends FragmentActivity implements OnMapReadyCallbac
     private Handler handler;
     private LatLng  startPosition, endPosition, currentPosition;
     private int index, next;
-    private Button btnGo;
-    private EditText etPlace;
+  //  private Button btnGo;
+    private Place places;
     private String destination;
     private PolylineOptions polylineOptions, blackPolylineOptions;
     private Polyline blackPolyline, greyPolyline;
+
+
+
 
 
     private IGoogleAPI mService;
@@ -190,19 +200,41 @@ public class LuggerWelcome extends FragmentActivity implements OnMapReadyCallbac
         });
 
         polyLineList = new ArrayList<>();
-        btnGo = (Button)findViewById(R.id.btnGo);
-        etPlace = (EditText)findViewById(R.id.etPlace);
 
-        btnGo.setOnClickListener(new View.OnClickListener() {
+        //Places API
+
+
+        Places.initialize(getApplicationContext(), "AIzaSyCqwz72TEG4-7A4M90vwQ6V545qY23HYQ8");
+
+        PlacesClient placesClient = Places.createClient(this);
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "AIzaSyCqwz72TEG4-7A4M90vwQ6V545qY23HYQ8");
+        }
+
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
+
+
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public void onClick(View view) {
-                destination = etPlace.getText().toString();
-                destination = destination.replace(" ","+");//Replace space with + for fetch data
-                Log.d("Jovon", destination);
+            public void onPlaceSelected(Place place) {
+                // Get info about the selected place.
+
+                destination = place.getName().toString();
+                destination = destination.replace(" ", "+");
 
                 getDirection();
             }
+
+            @Override
+            public void onError(Status status) {
+                // Handle the error.
+                Toast.makeText(LuggerWelcome.this, ""+status.toString(), Toast.LENGTH_SHORT).show();
+            }
         });
+
+
 
         //Geo Fire
         drivers = FirebaseDatabase.getInstance().getReference("Drivers");

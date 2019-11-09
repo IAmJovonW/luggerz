@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -57,6 +58,10 @@ dependencies {
     implementation 'io.github.inflationx:viewpump:2.0.3'
 
     testImplementation 'junit:junit:4.12'
+
+    implementation 'com.google.android.libraries.places:places:2.1.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 
