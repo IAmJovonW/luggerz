@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity" ;
     private Button btnLugger;
+    private Button btnPatron;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +26,22 @@ public class MainActivity extends AppCompatActivity {
                 goToLuggerLanding();
             }
         });
+
+        btnPatron = findViewById(R.id.btnPatron);
+        btnPatron.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToPatronLanding();
+            }
+        });
+    }
+
+    private void goToPatronLanding() {
+        Log.d(TAG, "Navigating To Patron Landing Activity");
+
+        Intent i = new Intent(this, PatronMainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private void goToLuggerLanding() {
